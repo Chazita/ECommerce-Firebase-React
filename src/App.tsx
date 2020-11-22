@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { NavBar } from "./components/NavBar";
+import {
+	Home,
+	SignIn,
+	SignUp,
+	MysProduct,
+	Products,
+	Error,
+	SelectProduct,
+	ShoppingCart,
+} from "./pages";
+import { AuthContext } from "./contexts/authContext";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+import { UserRoute } from "./utils/UserRoute";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	const [user, loading, error] = useAuthState(auth);
+
+	if (error) {
+		return (
+			<div>
+				<h1>Error: {error}</h1>
+			</div>
+		);
+	}
+
+	if (loading) {
+		return (
+			<div>
+				<h1>Is loading...</h1>
+			</div>
+		);
+	}
+
+	return (
+		<BrowserRouter>
+			<AuthContext.Provider value={{ user, loading }}>
+				<NavBar />
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route path="/products/:pageNumber" component={Products} />
+					<Route path="/product/:id/:name" component={SelectProduct} />
+					<UserRoute path="/user/product">
+						<MysProduct />
+					</UserRoute>
+					<UserRoute path="/user/shopping-cart">
+						<ShoppingCart />
+					</UserRoute>
+					<Route path="/sign-in" component={SignIn} />
+					<Route path="/sign-up" component={SignUp} />
+					<Route component={Error} />
+				</Switch>
+			</AuthContext.Provider>
+		</BrowserRouter>
+	);
 }
-
-export default App;
