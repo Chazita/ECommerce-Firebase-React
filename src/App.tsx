@@ -41,6 +41,7 @@ export default function App() {
 				<NavBar />
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route path="/products/:pageNumber/:category" component={Products} />
 					<Route path="/products/:pageNumber" component={Products} />
 					<Route path="/product/:id/:name" component={SelectProduct} />
 					<UserRoute path="/user/product">

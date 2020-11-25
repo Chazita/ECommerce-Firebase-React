@@ -9,11 +9,14 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import { useHistory } from "react-router-dom";
 
-export const Filtro = ({ filter }: any) => {
+export const Filtro = ({ loaded }: any) => {
 	const { register, handleSubmit, control } = useForm();
+	const history = useHistory();
 	const filterSubmit = (data: any) => {
-		filter(data.category);
+		// filter(data.category);
+		history.push("/products/1/" + data.category);
 	};
 
 	return (
@@ -44,6 +47,18 @@ export const Filtro = ({ filter }: any) => {
 								variant="contained"
 							>
 								Apply
+							</Button>
+							<Button
+								fullWidth
+								type="button"
+								color="secondary"
+								variant="contained"
+								onClick={() => {
+									history.push("/products/1/");
+									loaded(false);
+								}}
+							>
+								Reset
 							</Button>
 						</form>
 					</Grid>
