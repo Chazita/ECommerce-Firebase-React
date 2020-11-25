@@ -14,7 +14,7 @@ Este proyecto **trata** de imitar a una tienda electronica como amazon/mercado l
 
 #### Host
 
-El proyecto es hosteado en ...
+El proyecto es hosteado en [Verce](https://e-commerce-firebase-react.vercel.app/)
 
 ### Estado del proyecto
 
