@@ -10,19 +10,21 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const Filtro = ({ loaded }: any) => {
-	const { register, handleSubmit, control } = useForm();
+	const { handleSubmit, control } = useForm();
 	const history = useHistory();
+	const { t } = useTranslation();
+
 	const filterSubmit = (data: any) => {
-		// filter(data.category);
 		history.push("/products/1/" + data.category);
 	};
 
 	return (
 		<Accordion>
 			<AccordionSummary expandIcon={<ExpandMoreIcon />}>
-				<Typography>Filter</Typography>
+				<Typography>{t("filter.title")}</Typography>
 			</AccordionSummary>
 			<AccordionDetails>
 				<Grid container justify="center" alignItems="center">
@@ -35,7 +37,7 @@ export const Filtro = ({ loaded }: any) => {
 								defaultValue="vehicles"
 								as={
 									<RadioGroup>
-										<CategoryRadio register={register} />
+										<CategoryRadio />
 									</RadioGroup>
 								}
 							/>
@@ -46,7 +48,7 @@ export const Filtro = ({ loaded }: any) => {
 								color="primary"
 								variant="contained"
 							>
-								Apply
+								{t("filter.apply-button")}
 							</Button>
 							<Button
 								fullWidth
@@ -58,7 +60,7 @@ export const Filtro = ({ loaded }: any) => {
 									loaded(false);
 								}}
 							>
-								Reset
+								{t("filter.reset-button")}
 							</Button>
 						</form>
 					</Grid>

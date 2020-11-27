@@ -10,16 +10,10 @@ Este proyecto **trata** de imitar a una tienda electronica como amazon/mercado l
 - Firebase
 - Material-ui
 - Typescript
-- Otras librerias de components (Ver el package.json)
-
-#### Host
-
-El proyecto es hosteado en ...
+- Otras librerias de componentes (Ver el package.json)
 
 ### Estado del proyecto
 
 :heavy_check_mark: Conexión a firebase.  
 :heavy_check_mark: Funciones principales del proyecto.  
-:x: i18n Español e Inglés  
-:x: Accesibilidad  
-:x: Test
+:heavy_check_mark: i18n Español e Inglés

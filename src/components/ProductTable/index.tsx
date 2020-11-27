@@ -11,6 +11,7 @@ import Delete from "@material-ui/icons/Delete";
 import Edit from "@material-ui/icons/Edit";
 import { Product } from "../../types/Product";
 import { DeleteProduct } from "src/utils/ProductFunctions";
+import { useTranslation } from "react-i18next";
 
 interface Props {
 	data: Product[] | undefined;
@@ -19,6 +20,8 @@ interface Props {
 }
 
 export const ProductTable = ({ data, setData, setOpen }: Props) => {
+	const { t } = useTranslation();
+
 	const editRow = (data: Product) => {
 		setData(data);
 		setOpen(true);
@@ -33,11 +36,11 @@ export const ProductTable = ({ data, setData, setOpen }: Props) => {
 			<Table size="small">
 				<TableHead>
 					<TableRow>
-						<TableCell>Name</TableCell>
-						<TableCell>Price</TableCell>
-						<TableCell>Discount</TableCell>
-						<TableCell>Create at</TableCell>
-						<TableCell>Accion</TableCell>
+						<TableCell>{t("my-products-table.name")}</TableCell>
+						<TableCell>{t("my-products-table.price")}</TableCell>
+						<TableCell>{t("my-products-table.discount")}</TableCell>
+						<TableCell>{t("my-products-table.create-at")}</TableCell>
+						<TableCell>{t("my-products-table.action")}</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

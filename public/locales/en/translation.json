@@ -1,0 +1,77 @@
+{
+    "sign-in":{
+        "email":"E-Mail",
+        "email-placeholder":"Ex:some@email.com",
+        "passowrd":"Password",
+        "sign-in-button":"Log in",
+        "sign-in-google":"Log in With Google",
+        "register-button":"You don't have an account click",
+        "link-to-click":"here",
+        "validation-email-required":"Email is required.",
+        "validation-email-invalid":"Email is invalid.",
+        "validation-password-required":"Password is required.",
+        "validation-password-minLength":"Password is invalid."
+    },
+    "sign-up":{
+        "username":"Username",
+        "password-confirm":"Confirm Password",
+        "upload-photo":"Upload Photo",
+        "register":"Register",
+        "validation-name":"Username is required.",
+        "validation-password-minLength":"Password must have at least 6 characters"
+    },
+    "home":{
+        "discounts":"Big Discounts",
+        "new":"New Products"
+    },
+    "filter":{
+        "title":"Categorys Filter",
+        "apply-button":"Apply",
+        "reset-button":"Reset"
+    },
+    "categorys":[
+        { "name": "Vehicles", "value": "vehicles" },
+        { "name": "Clothing", "value": "clothing" },
+        { "name": "Food & Drink", "value": "food_drink" },
+        { "name": "Technology", "value": "technology" },
+        { "name": "Consoles & Video Games", "value": "consoles_video_games" },
+        { "name": "Book & Comics", "value": "book_comics" },
+        { "name": "Others", "value": "others" }
+    ],
+    "navbar":{
+        "home":"Home",
+        "product":"Product",
+        "log-in":"Log in"
+    },
+    "user-menu":{
+        "my-products":"My Products",
+        "shopping-cart":"Shopping-Cart",
+        "log-out":"Log Out"
+    },
+    "my-products-table":{
+        "name":"Name",
+        "price":"Price",
+        "discount":"Discount",
+        "create-at":"Create at",
+        "action":"Action",
+        "add-product":"Add Product"
+    },
+    "product-modal":{
+        "title-edit":"Edit Product",
+        "tittle-add":"Add Product",
+        "product-name":"Product Name",
+        "product-price":"Product Price",
+        "product-discount":"Product Discount",
+        "product-category":"Product Category",
+        "button-cancel":"Cancel",
+        "button-create":"Create",
+        "button-save":"Save"
+    },
+    "shopping-cart":{
+        "image":"Image",
+        "name":"Name",
+        "price":"Price",
+        "delete":"Delete"
+    },
+    "language":"Language"
+}

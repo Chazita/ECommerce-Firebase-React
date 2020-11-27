@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { auth } from "src/firebase";
 import { UserUploadImage } from "src/utils/userPhotoUpload";
 import { storage } from "src/firebase";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -55,6 +56,8 @@ export const SignUp = () => {
 	const classes = useStyles();
 	const { register, errors, handleSubmit } = useForm<SignUpForm>();
 
+	const { t } = useTranslation();
+
 	const signUpSubmit = async (data: SignUpForm) => {
 		if (data.password === data.confirmPassword) {
 			auth
@@ -90,18 +93,18 @@ export const SignUp = () => {
 	return (
 		<form onSubmit={handleSubmit(signUpSubmit)} className={classes.root}>
 			<TextField
-				label="Username"
+				label={t("sign-up.username")}
 				inputRef={register({ required: true })}
 				name="username"
 				error={errors.username ? true : false}
 				helperText={
-					errors.username?.type === "required" && "Username is required"
+					errors.username?.type === "required" && t("sign-up.validation-name")
 				}
 			/>
 
 			<TextField
-				label="Email"
-				placeholder="Ex:some@email.com"
+				label={t("sign-in.email")}
+				placeholder={t("sign-in.email-placeholder")}
 				inputRef={register({
 					required: true,
 					pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
@@ -109,34 +112,38 @@ export const SignUp = () => {
 				name="email"
 				error={errors.email ? true : false}
 				helperText={
-					(errors.email?.type === "required" && "Email is required") ||
-					(errors.email?.type === "pattern" && "Email is invalid")
+					(errors.email?.type === "required" &&
+						t("sign-in.validation-email-required")) ||
+					(errors.email?.type === "pattern" &&
+						t("sign-in.validation-email-invalid"))
 				}
 			/>
 
 			<TextField
-				label="Password"
+				label={t("sign-in.passowrd")}
 				type="password"
 				inputRef={register({ required: true, minLength: 6 })}
 				name="password"
 				error={errors.password ? true : false}
 				helperText={
-					(errors.password?.type === "required" && "Password is required") ||
+					(errors.password?.type === "required" &&
+						t("sign-in.validation-password-required")) ||
 					(errors.password?.type === "minLength" &&
-						"Password must have at least 6 characters")
+						t("sign-up.validation-password-minLength"))
 				}
 			/>
 
 			<TextField
-				label="Confirm Password"
+				label={t("sign-up.password-confirm")}
 				type="password"
 				inputRef={register({ required: true, minLength: 6 })}
 				name="confirmPassword"
 				error={errors.password ? true : false}
 				helperText={
-					(errors.password?.type === "required" && "Password is required") ||
+					(errors.password?.type === "required" &&
+						t("sign-in.validation-password-required")) ||
 					(errors.password?.type === "minLength" &&
-						"Password must have at least 6 characters")
+						t("sign-up.validation-password-minLength"))
 				}
 			/>
 
@@ -156,12 +163,12 @@ export const SignUp = () => {
 					component="span"
 					fullWidth
 				>
-					Upload Photo
+					{t("sign-up.upload-photo")}
 				</Button>
 			</label>
 
 			<Button variant="contained" color="primary" type="submit">
-				Sign Up
+				{t("sign-up.register")}
 			</Button>
 		</form>
 	);

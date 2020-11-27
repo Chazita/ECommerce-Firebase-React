@@ -7,6 +7,7 @@ import { Product } from "../../types/Product";
 import { ModalProduct } from "../../components/ModalProduct";
 import { firestore } from "src/firebase";
 import { AuthContext } from "src/contexts/authContext";
+import { useTranslation } from "react-i18next";
 
 export const MysProduct = () => {
 	document.title = "My Products - ECommerce";
@@ -14,8 +15,10 @@ export const MysProduct = () => {
 	const [dataModal, setDataModal] = useState<Product>();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [data, setData] = useState<Product[]>();
+	const { t } = useTranslation();
 
 	useEffect(() => {
+		console.log("call");
 		const unsubcribe = firestore
 			.collection("products")
 			.orderBy("create_at", "desc")
@@ -47,7 +50,7 @@ export const MysProduct = () => {
 						setOpenModal(true);
 					}}
 				>
-					Add Product
+					{t("my-products-table.add-product")}
 				</Button>
 			</Grid>
 			<ProductTable data={data} setData={setDataModal} setOpen={setOpenModal} />

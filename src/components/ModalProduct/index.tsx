@@ -15,6 +15,7 @@ import { useForm, Controller } from "react-hook-form";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { AddProduct, EditProduct } from "src/utils/ProductFunctions";
 import { AuthContext } from "src/contexts/authContext";
+import { useTranslation } from "react-i18next";
 
 interface Props {
 	open: boolean;
@@ -47,10 +48,10 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 	const auth = React.useContext(AuthContext);
 	const { register, errors, handleSubmit, control } = useForm<productForm>();
 	const classes = useStyles();
+	const { t } = useTranslation();
 
 	const submitProduct = (data: productForm) => {
 		if (dataProduct) {
-			console.log(dataProduct);
 			let product: Product = {
 				product_id: dataProduct.product_id,
 				category: data.category,
@@ -61,7 +62,6 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 			EditProduct(product, data.photo);
 			closeModal();
 		} else {
-			console.log("product created", data);
 			let product: Product = {
 				name: data.name,
 				discount: +data.discount,
@@ -83,7 +83,11 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 
 	return (
 		<Dialog open={open} onClose={() => close(false)}>
-			<DialogTitle>{dataProduct ? "Edit Product" : "Add Product"}</DialogTitle>
+			<DialogTitle>
+				{dataProduct
+					? t("product-modal.title-edit")
+					: t("product-modal.title-add")}
+			</DialogTitle>
 			<form onSubmit={handleSubmit(submitProduct)}>
 				<DialogContent>
 					<img
@@ -104,7 +108,7 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 						inputRef={register({ required: true })}
 						name="name"
 						className={classes.input}
-						label="Product Name"
+						label={t("product-modal.product-name")}
 						error={errors.name ? true : false}
 					/>
 					<TextField
@@ -114,7 +118,7 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 						inputRef={register({ required: true })}
 						name="price"
 						className={classes.input}
-						label="Product Price"
+						label={t("product-modal.product-price")}
 						error={errors.price ? true : false}
 					/>
 					<TextField
@@ -124,17 +128,17 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 						inputRef={register({ required: true })}
 						name="discount"
 						className={classes.input}
-						label="Product Discount"
+						label={t("product-modal.product-discount")}
 						error={errors.discount ? true : false}
 					/>
 					<FormControl variant="outlined" fullWidth>
-						<InputLabel>Product Category</InputLabel>
+						<InputLabel>{t("product-modal.product-category")}</InputLabel>
 						<Controller
 							name="category"
 							control={control}
 							defaultValue={dataProduct ? dataProduct.category : ""}
 							as={
-								<Select label="Product Category">
+								<Select label={t("product-modal.product-category")}>
 									{categorys.map((category) => (
 										<MenuItem key={category.value} value={category.value}>
 											{category.name}
@@ -147,10 +151,12 @@ export const ModalProduct = ({ open, close, dataProduct, setData }: Props) => {
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={closeModal} variant="contained" color="secondary">
-						Cancel
+						{t("product-modal.button-cancel")}
 					</Button>
 					<Button type="submit" variant="contained" color="primary">
-						{dataProduct ? "Save" : "Create"}
+						{dataProduct
+							? t("product-modal.button-save")
+							: t("product-modal.button-create")}
 					</Button>
 				</DialogActions>
 			</form>

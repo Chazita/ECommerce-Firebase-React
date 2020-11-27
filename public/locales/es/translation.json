@@ -1,0 +1,77 @@
+{
+    "sign-in":{
+        "email":"E-Mail",
+        "email-placeholder":"Ej:algun@email.com",
+        "passowrd":"Contraseña",
+        "sign-in-button":"Iniciar Sesión",
+        "sign-in-google":"Iniciar Sesión con Google",
+        "register-button":"No tienes una cuenta has click",
+        "link-to-click":"aqui",
+        "validation-email-required":"Email es necesario.",
+        "validation-email-invalid":"Email es invalido.",
+        "validation-password-required":"La contraseña es necesaria.",
+        "validation-password-minLength":"La contrseña es invalida."
+    },
+    "sign-up":{
+        "username":"Nombre de Usuario",
+        "password-confirm":"Confirmar Contraseña",
+        "upload-photo":"Subir Foto",
+        "register":"Registrarse",
+        "validation-name":"Nombre de Usuario es necesario.",
+        "validation-password-minLength":"La contraseña debe tener al menos 6 caracteres."
+    },
+    "home":{
+        "discounts":"Grandes Descuentos",
+        "new":"Productos Nuevos"
+    },
+    "filter":{
+        "title":"Fitro de Categoria",
+        "apply-button":"Aplicar",
+        "reset-button":"Reiniciar"
+    },
+    "categorys":[
+        { "name": "Vehiculos", "value": "vehicles" },
+        { "name": "Ropa", "value": "clothing" },
+        { "name": "Comidas y Bebidas", "value": "food_drink" },
+        { "name": "Tecnologia", "value": "technology" },
+        { "name": "Consolas y Video-juegos", "value": "consoles_video_games" },
+        { "name": "Libros y Comics", "value": "book_comics" },
+        { "name": "Otros", "value": "others" }
+    ],
+    "navbar":{
+        "home":"Inicio",
+        "product":"Productos",
+        "log-in":"Iniciar Sesión"
+    },
+    "user-menu":{
+        "my-products":"Mi Productos",
+        "shopping-cart":"Carrito de Compras",
+        "log-out":"Cerrar Sesión"
+    },
+    "my-products-table":{
+        "name":"Nombre",
+        "price":"Precio",
+        "discount":"Descuento",
+        "create-at":"Creado el",
+        "action":"Accion",
+        "add-product":"Agregar Producto"
+    },
+    "product-modal":{
+        "title-edit":"Editanto Productor",
+        "tittle-add":"Agregando Producto",
+        "product-name":"Nombre del Producto",
+        "product-price":"Precio del Producto",
+        "product-discount":"Descuento del Producto",
+        "product-category":"Categoria del Producto",
+        "button-cancel":"Cancelar",
+        "button-create":"Crear",
+        "button-save":"Guardar"
+    },
+    "shopping-cart":{
+        "image":"Imagen",
+        "name":"Nombre",
+        "price":"Precio",
+        "delete":"Eliminar"
+    },
+    "language":"Lenguaje"
+}

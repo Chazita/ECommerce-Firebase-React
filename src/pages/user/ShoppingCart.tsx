@@ -10,6 +10,7 @@ export const ShoppingCart = () => {
 
 	useEffect(() => {
 		if (productsId.length > 0) {
+			console.log("call");
 			firestore
 				.collection("products")
 				.where("product_id", "in", productsId)

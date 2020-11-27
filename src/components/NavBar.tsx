@@ -4,13 +4,15 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Close from "@material-ui/icons/Close";
 import { AuthContext } from "src/contexts/authContext";
 import { auth } from "src/firebase";
+import { useTranslation } from "react-i18next";
+import { ToolbarChange } from "src/components/ChangeLanguage/ToolbarChange";
+import { SidebarChange } from "src/components/ChangeLanguage/SidebarChange";
 
-//#region components
+//#region Material components imports
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -21,7 +23,14 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
+//#endregion
+
+//#region Materials icons imports
+import MenuIcon from "@material-ui/icons/Menu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import HomeIcon from "@material-ui/icons/Home";
+import StoreIcon from "@material-ui/icons/Store";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 //#endregion
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -69,7 +78,7 @@ export const NavBar = () => {
 	const userContext = React.useContext(AuthContext);
 	const [sideNav, setSideNav] = React.useState(false);
 	const [menuOpen, setMenuOpen] = React.useState<null | HTMLElement>(null);
-
+	const { t } = useTranslation();
 	const handleUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setMenuOpen(event.currentTarget);
 	};
@@ -109,25 +118,25 @@ export const NavBar = () => {
 				>
 					<MenuItem onClick={() => setMenuOpen(null)}>
 						<Link className={classes.link} to="/user/product">
-							My Products
+							{t("user-menu.my-products")}
 						</Link>
 					</MenuItem>
 					<MenuItem>
 						<Link className={classes.link} to="/user/shopping-cart">
 							<Typography>
 								<ShoppingCartIcon />
-								Shopping-Cart
+								{t("user-menu.shopping-cart")}
 							</Typography>
 						</Link>
 					</MenuItem>
-					<MenuItem onClick={signOut}>SignOut</MenuItem>
+					<MenuItem onClick={signOut}>{t("user-menu.log-out")}</MenuItem>
 				</Menu>
 			</>
 		);
 	} else {
 		logged = (
 			<Typography component={Link} to="/sign-in">
-				Login
+				{t("navbar.log-in")}
 			</Typography>
 		);
 	}
@@ -145,23 +154,21 @@ export const NavBar = () => {
 				<Typography variant="h6" className={classes.title}>
 					E-Commerce
 				</Typography>
+				<ToolbarChange />
 				<Typography component={Link} to="/">
-					Home
+					{t("navbar.home")}
 				</Typography>
 				<Typography component={Link} to="/products/1">
-					Products
+					{t("navbar.product")}
 				</Typography>
 				{logged}
 			</Toolbar>
 
-			<Drawer
-				open={sideNav}
-				onClose={() => setSideNav((prev) => (prev = !sideNav))}
-			>
+			<Drawer open={sideNav}>
 				<List
 					className={classes.sidenav}
 					role="presentation"
-					onClick={() => setSideNav((prev) => (prev = !sideNav))}
+					onClick={() => setSideNav(!sideNav)}
 				>
 					<ListItem button>
 						<ListItemIcon>
@@ -172,18 +179,30 @@ export const NavBar = () => {
 					<Divider />
 
 					<ListItem component={Link} to="/" button>
-						<ListItemText primary="Home" />
+						<ListItemIcon>
+							<HomeIcon />
+						</ListItemIcon>
+						<ListItemText primary={t("navbar.home")} />
 					</ListItem>
 					<ListItem component={Link} to="/products/1" button>
-						<ListItemText primary="Product" />
+						<ListItemIcon>
+							<StoreIcon />
+						</ListItemIcon>
+						<ListItemText primary={t("navbar.product")} />
 					</ListItem>
 					{userContext?.user ? (
 						<></>
 					) : (
 						<ListItem component={Link} to="/sign-in" button>
-							<ListItemText primary="Sign-In" />
+							<ListItemIcon>
+								<AssignmentIndIcon />
+							</ListItemIcon>
+							<ListItemText primary={t("navbar.log-in")} />
 						</ListItem>
 					)}
+				</List>
+				<List>
+					<SidebarChange keepOpen={setSideNav} />
 				</List>
 			</Drawer>
 		</AppBar>

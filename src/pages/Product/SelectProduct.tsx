@@ -53,6 +53,7 @@ export const SelectProduct = () => {
 	let price;
 
 	useEffect(() => {
+		console.log("call");
 		firestore
 			.collection("products")
 			.doc(id)

@@ -1,9 +1,17 @@
 import React from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-import { categorys } from "../../types/Category";
+import { useTranslation } from "react-i18next";
 
-export const CategoryRadio = ({ register }: any) => {
+type Category = {
+	name: string;
+	value: string;
+};
+
+export const CategoryRadio = () => {
+	const { t } = useTranslation();
+
+	let categorys: Category[] = t("categorys");
 	let category = categorys.map((option, index) => {
 		return (
 			<FormControlLabel

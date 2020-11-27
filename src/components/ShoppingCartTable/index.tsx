@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
+import { useTranslation } from "react-i18next";
 
 import Clear from "@material-ui/icons/Clear";
 
@@ -18,15 +19,16 @@ interface Props {
 }
 
 export const ShoppingCartTable = ({ data, localRefresh }: Props) => {
+	const { t } = useTranslation();
 	return (
 		<TableContainer component={Paper} square>
 			<Table size="small">
 				<TableHead>
 					<TableRow>
-						<TableCell>Image</TableCell>
-						<TableCell>Name</TableCell>
-						<TableCell>Price</TableCell>
-						<TableCell>Delete</TableCell>
+						<TableCell>{t("shopping-cart.image")}</TableCell>
+						<TableCell>{t("shopping-cart.name")}</TableCell>
+						<TableCell>{t("shopping-cart.price")}</TableCell>
+						<TableCell>{t("shopping-cart.delete")}</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

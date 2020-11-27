@@ -36,6 +36,7 @@ export const Products = () => {
 	console.log(history.location);
 
 	useEffect(() => {
+		console.log("call");
 		if (history.location.pathname === `/products/1/${category}` && !isLoaded) {
 			firestore
 				.collection("products")
